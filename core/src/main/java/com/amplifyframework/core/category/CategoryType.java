@@ -75,7 +75,12 @@ public enum CategoryType {
      * Storage is an interface to a remote repository to store and
      * retrieve instances of domain models.
      */
-    STORAGE("storage");
+    STORAGE("storage"),
+
+    /**
+     * Video provides live and/or on-demand media streaming using the HLS protocol.
+     */
+    VIDEO("video");
 
     /**
      * The key this category is listed under in the config JSON.
