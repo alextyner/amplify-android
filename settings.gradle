@@ -23,6 +23,7 @@ include ':aws-auth-cognito'
 include ':aws-predictions'
 include ':aws-predictions-tensorflow'
 include ':aws-storage-s3'
+include ':aws-video'
 
 // Test Utilities and assets
 include ':testutils'
