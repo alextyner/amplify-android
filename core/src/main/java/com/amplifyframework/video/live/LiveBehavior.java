@@ -13,14 +13,11 @@
  * permissions and limitations under the License.
  */
 
-package com.amplifyframework.video;
-
-import com.amplifyframework.video.live.LiveBehavior;
-import com.amplifyframework.video.ondemand.OnDemandBehavior;
+package com.amplifyframework.video.live;
 
 /**
- * Video category behaviors include live and on-demand operations.
- * TODO: operations like what?
+ * Live video behaviors include TODO: what? .
  */
-public interface VideoCategoryBehavior extends LiveBehavior, OnDemandBehavior {
+public interface LiveBehavior {
+    // TODO: live behaviors
 }
