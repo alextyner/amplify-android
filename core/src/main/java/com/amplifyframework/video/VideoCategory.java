@@ -20,6 +20,8 @@ import androidx.annotation.NonNull;
 import com.amplifyframework.core.category.Category;
 import com.amplifyframework.core.category.CategoryType;
 
+import java.net.URI;
+
 /**
  * Video provides live and/or on-demand media streaming using the HLS protocol.
  * The category is implemented by zero or more {@link VideoPlugin}.
@@ -37,4 +39,8 @@ public final class VideoCategory extends Category<VideoPlugin<?>> implements Vid
         return CategoryType.VIDEO;
     }
 
+    @Override
+    public URI getEgressFor(String resourceName) {
+        return getSelectedPlugin().getEgressFor(resourceName);
+    }
 }

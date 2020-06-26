@@ -16,12 +16,15 @@
 package com.amplifyframework.video;
 
 import android.content.Context;
+import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.amplifyframework.AmplifyException;
 
 import org.json.JSONObject;
+
+import java.net.URI;
 
 /**
  * An AWS implementation of the {@link VideoPlugin}.
@@ -43,7 +46,8 @@ public class AWSVideoPlugin extends VideoPlugin<Void> {
      */
     @Override
     public void configure(JSONObject pluginConfiguration, @NonNull Context context) throws AmplifyException {
-
+        Log.d("HELLO", pluginConfiguration.toString());
+        Log.d("HELLO", context.toString());
     }
 
     /**
@@ -54,4 +58,13 @@ public class AWSVideoPlugin extends VideoPlugin<Void> {
     public Void getEscapeHatch() {
         return null;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public URI getEgressFor(String resourceName) {
+        return null;
+    }
+
 }

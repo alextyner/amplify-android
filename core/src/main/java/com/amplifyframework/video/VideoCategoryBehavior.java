@@ -18,9 +18,19 @@ package com.amplifyframework.video;
 import com.amplifyframework.video.live.LiveBehavior;
 import com.amplifyframework.video.ondemand.OnDemandBehavior;
 
+import java.net.URI;
+
 /**
  * Video category behaviors include live and on-demand operations.
  * TODO: operations like what?
  */
 public interface VideoCategoryBehavior extends LiveBehavior, OnDemandBehavior {
+
+    /**
+     * Get the stream egress point for a named resource.
+     * @param resourceName Name of the stream resource
+     * @return URI pointing to the stream egress point
+     */
+    URI getEgressFor(String resourceName);
+
 }

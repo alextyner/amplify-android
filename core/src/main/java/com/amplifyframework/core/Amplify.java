@@ -108,7 +108,7 @@ public final class Amplify {
      * @throws AmplifyException thrown when already configured or there is no plugin found for a configuration
      */
     public static void configure(@NonNull Context context) throws AmplifyException {
-        Log.e("App", "Hello!");
+        Log.e("App", "Hello!"); // TODO: remove
         configure(AmplifyConfiguration.fromConfigFile(context), context);
     }
 
