@@ -33,6 +33,7 @@ import com.amplifyframework.logging.LoggingCategoryConfiguration;
 import com.amplifyframework.predictions.PredictionsCategoryConfiguration;
 import com.amplifyframework.storage.StorageCategoryConfiguration;
 import com.amplifyframework.util.Immutable;
+import com.amplifyframework.video.VideoCategoryConfiguration;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -82,7 +83,8 @@ public final class AmplifyConfiguration {
             new HubCategoryConfiguration(),
             new LoggingCategoryConfiguration(),
             new PredictionsCategoryConfiguration(),
-            new StorageCategoryConfiguration()
+            new StorageCategoryConfiguration(),
+            new VideoCategoryConfiguration()
         );
 
         final Map<String, CategoryConfiguration> actualConfigs = new HashMap<>();

@@ -15,10 +15,10 @@
 
 package com.amplifyframework.video;
 
+import android.net.Uri;
+
 import com.amplifyframework.video.live.LiveBehavior;
 import com.amplifyframework.video.ondemand.OnDemandBehavior;
-
-import java.net.URI;
 
 /**
  * Video category behaviors include live and on-demand operations.
@@ -31,6 +31,6 @@ public interface VideoCategoryBehavior extends LiveBehavior, OnDemandBehavior {
      * @param resourceName Name of the stream resource
      * @return URI pointing to the stream egress point
      */
-    URI getEgressFor(String resourceName);
+    Uri getEgressFor(String resourceName);
 
 }
