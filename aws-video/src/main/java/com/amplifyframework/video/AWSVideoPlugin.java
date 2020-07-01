@@ -21,6 +21,9 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.amplifyframework.video.config.AWSVideoPluginConfiguration;
+import com.amplifyframework.video.config.AWSVideoPluginConfigurationReader;
+
 import org.json.JSONObject;
 
 /**
@@ -28,6 +31,8 @@ import org.json.JSONObject;
  */
 public class AWSVideoPlugin extends VideoPlugin<Void> {
     private static final String AWS_VIDEO_PLUGIN_KEY = "awsVideoPlugin";
+
+    private AWSVideoPluginConfiguration configuration;
 
     /**
      * {@inheritDoc}
@@ -45,6 +50,8 @@ public class AWSVideoPlugin extends VideoPlugin<Void> {
     public void configure(JSONObject pluginConfiguration, @NonNull Context context) throws VideoException {
         // TODO: remove these
         Log.d("HELLO", pluginConfiguration.toString());
+        this.configuration = AWSVideoPluginConfigurationReader.readFrom(pluginConfiguration);
+        Log.d("HELLO", String.valueOf(configuration));
     }
 
     /**

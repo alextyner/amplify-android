@@ -17,7 +17,6 @@ package com.amplifyframework.core;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.amplifyframework.AmplifyException;
@@ -108,7 +107,6 @@ public final class Amplify {
      * @throws AmplifyException thrown when already configured or there is no plugin found for a configuration
      */
     public static void configure(@NonNull Context context) throws AmplifyException {
-        Log.e("App", "Hello!"); // TODO: remove
         configure(AmplifyConfiguration.fromConfigFile(context), context);
     }
 

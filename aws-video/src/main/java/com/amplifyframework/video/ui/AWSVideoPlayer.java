@@ -13,13 +13,15 @@
  * permissions and limitations under the License.
  */
 
-package com.amplifyframework.video;
+package com.amplifyframework.video.ui;
 
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.MediaController;
 import androidx.annotation.RequiresApi;
+
+import com.amplifyframework.video.VideoPlayer;
 
 /**
  * A video player for Amplify Video.
