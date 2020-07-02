@@ -13,40 +13,28 @@
  * permissions and limitations under the License.
  */
 
-package com.amplifyframework.video.live;
+package com.amplifyframework.video.resources.live;
 
 /**
  * Various live streaming protocols.
  */
-public enum EgressType {
+public enum IngressType {
     /**
-     * HLS.
+     * Primary.
      */
-    HLS("hls"),
+    PRIMARY("primary"),
     /**
      * DASH.
      */
-    DASH("dash"),
-    /**
-     * MSS.
-     */
-    MSS("mss"),
-    /**
-     * CMAF.
-     */
-    CMAF("cmaf"),
-    /**
-     * MEDIASTORE.
-     */
-    MEDIASTORE("mediastore");
+    BACKUP("backup");
 
     private String key;
 
     /**
-     * Constructor for the EgressType.
+     * Constructor for the IngressType.
      * @param key JSON field name
      */
-    EgressType(String key) {
+    IngressType(String key) {
         this.key = key;
     }
 
@@ -59,32 +47,32 @@ public enum EgressType {
     }
 
     /**
-     * Look up a EgressType by its key name.
+     * Look up a IngressType by its key name.
      * @param key String representation of a protocol type
-     * @return The corresponding egress type
+     * @return The corresponding ingress type
      */
-    public static EgressType fromKey(String key) {
-        for (final EgressType egressType : values()) {
-            if (egressType.key().equals(key)) {
-                return egressType;
+    public static IngressType fromKey(String key) {
+        for (final IngressType ingressType : values()) {
+            if (ingressType.key().equals(key)) {
+                return ingressType;
             }
         }
 
-        throw new IllegalArgumentException("No such egress type: " + key);
+        throw new IllegalArgumentException("No such ingress type: " + key);
     }
 
     /**
-     * Look up a EgressType by its String name.
+     * Look up a IngressType by its String name.
      * @param name String representation of a protocol type
-     * @return The corresponding egress type
+     * @return The corresponding ingress type
      */
-    public static EgressType from(String name) {
-        for (final EgressType egressType : values()) {
-            if (egressType.name().equals(name)) {
-                return egressType;
+    public static IngressType from(String name) {
+        for (final IngressType ingressType : values()) {
+            if (ingressType.name().equals(name)) {
+                return ingressType;
             }
         }
 
-        throw new IllegalArgumentException("No such egress type: " + name);
+        throw new IllegalArgumentException("No such ingress type: " + name);
     }
 }

@@ -16,23 +16,20 @@
 package com.amplifyframework.video.config;
 
 import com.amplifyframework.video.VideoException;
-import com.amplifyframework.video.VideoResource;
-import com.amplifyframework.video.VideoResourceType;
-import com.amplifyframework.video.live.EgressType;
-import com.amplifyframework.video.live.IngressType;
-import com.amplifyframework.video.live.LiveResource;
-import com.amplifyframework.video.ondemand.InputType;
-import com.amplifyframework.video.ondemand.OnDemandResource;
-import com.amplifyframework.video.ondemand.OutputType;
+import com.amplifyframework.video.resources.VideoResourceType;
+import com.amplifyframework.video.resources.live.EgressType;
+import com.amplifyframework.video.resources.live.IngressType;
+import com.amplifyframework.video.resources.live.LiveResource;
+import com.amplifyframework.video.resources.ondemand.InputType;
+import com.amplifyframework.video.resources.ondemand.OnDemandResource;
+import com.amplifyframework.video.resources.ondemand.OutputType;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Reads video plugin configuration from JSON.
@@ -63,13 +60,13 @@ public final class AWSVideoPluginConfigurationReader {
     private static AWSVideoPluginConfiguration parseConfigurationJson(JSONObject configurationJson)
             throws VideoException {
         try {
-            Set<VideoResource> videoResources = new HashSet<>();
+            AWSVideoPluginConfiguration.Builder config = AWSVideoPluginConfiguration.builder();
+
             Iterator<String> iter = configurationJson.keys();
             while (iter.hasNext()) {
                 String identifier = iter.next();
                 JSONObject videoResource = configurationJson.getJSONObject(identifier);
                 VideoResourceType type = VideoResourceType.from(videoResource.getString("type"));
-
                 switch (type) {
                     case LIVE:
                         JSONObject ingress = videoResource.getJSONObject("ingress");
@@ -78,7 +75,7 @@ public final class AWSVideoPluginConfigurationReader {
                         JSONObject egress = videoResource.getJSONObject("egress");
                         Map<EgressType, String> egressPoints = readEgressAsMap(egress);
 
-                        videoResources.add(new LiveResource(identifier, ingressPoints, egressPoints));
+                        config.addLiveResource(new LiveResource(identifier, ingressPoints, egressPoints));
                         break;
                     case ON_DEMAND:
                         String input = videoResource.getString("input");
@@ -89,14 +86,14 @@ public final class AWSVideoPluginConfigurationReader {
                         Map<OutputType, String> outputMethods = new HashMap<>();
                         outputMethods.put(OutputType.S3_BUCKET, output);
 
-                        videoResources.add(new OnDemandResource(identifier, inputMethods, outputMethods));
+                        config.addOnDemandResource(new OnDemandResource(identifier, inputMethods, outputMethods));
                         break;
                     default:
                         throw new VideoException("Invalid video resource type.", "Consider " +
                                 "re-generating the Amplify Video config file.");
                 }
             }
-            return new AWSVideoPluginConfiguration(videoResources);
+            return config.build();
 
         } catch (JSONException exception) {
             throw new VideoException(
@@ -130,12 +127,4 @@ public final class AWSVideoPluginConfigurationReader {
         return map;
     }
 
-//    enum ConfigKey {
-//    ;
-//        private final String key;
-//
-//        ConfigKey(String key) {
-//            this.key = key;
-//        }
-//    }
 }

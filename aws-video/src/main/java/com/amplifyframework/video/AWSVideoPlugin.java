@@ -17,19 +17,24 @@ package com.amplifyframework.video;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.amplifyframework.video.config.AWSVideoPluginConfiguration;
 import com.amplifyframework.video.config.AWSVideoPluginConfigurationReader;
+import com.amplifyframework.video.resources.live.LiveResource;
+import com.amplifyframework.video.resources.ondemand.OnDemandResource;
 
 import org.json.JSONObject;
+
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * An AWS implementation of the {@link VideoPlugin}.
  */
 public class AWSVideoPlugin extends VideoPlugin<Void> {
+
     private static final String AWS_VIDEO_PLUGIN_KEY = "awsVideoPlugin";
 
     private AWSVideoPluginConfiguration configuration;
@@ -48,10 +53,7 @@ public class AWSVideoPlugin extends VideoPlugin<Void> {
      */
     @Override
     public void configure(JSONObject pluginConfiguration, @NonNull Context context) throws VideoException {
-        // TODO: remove these
-        Log.d("HELLO", pluginConfiguration.toString());
         this.configuration = AWSVideoPluginConfigurationReader.readFrom(pluginConfiguration);
-        Log.d("HELLO", String.valueOf(configuration));
     }
 
     /**
@@ -65,11 +67,41 @@ public class AWSVideoPlugin extends VideoPlugin<Void> {
 
     /**
      * {@inheritDoc}
-     * @return
      */
     @Override
     public Uri getEgressFor(String resourceName) {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Collection<LiveResource> liveResources() {
+        return Collections.unmodifiableCollection(configuration.liveResources().values());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Collection<OnDemandResource> onDemandResources() {
+        return Collections.unmodifiableCollection(configuration.onDemandResources().values());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public LiveResource getLiveResource(String identifier) {
+        return configuration.liveResources().get(identifier);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public OnDemandResource getOnDemandResource(String identifier) {
+        return configuration.onDemandResources().get(identifier);
+    }
 }

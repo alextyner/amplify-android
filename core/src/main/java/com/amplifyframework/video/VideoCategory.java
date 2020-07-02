@@ -20,6 +20,10 @@ import androidx.annotation.NonNull;
 
 import com.amplifyframework.core.category.Category;
 import com.amplifyframework.core.category.CategoryType;
+import com.amplifyframework.video.resources.live.LiveResource;
+import com.amplifyframework.video.resources.ondemand.OnDemandResource;
+
+import java.util.Collection;
 
 /**
  * Video provides live and/or on-demand media streaming using the HLS protocol.
@@ -41,6 +45,26 @@ public final class VideoCategory extends Category<VideoPlugin<?>> implements Vid
     @Override
     public Uri getEgressFor(String resourceName) {
         return getSelectedPlugin().getEgressFor(resourceName);
+    }
+
+    @Override
+    public Collection<LiveResource> liveResources() {
+        return getSelectedPlugin().liveResources();
+    }
+
+    @Override
+    public LiveResource getLiveResource(String identifier) {
+        return getSelectedPlugin().getLiveResource(identifier);
+    }
+
+    @Override
+    public Collection<OnDemandResource> onDemandResources() {
+        return getSelectedPlugin().onDemandResources();
+    }
+
+    @Override
+    public OnDemandResource getOnDemandResource(String identifier) {
+        return getSelectedPlugin().getOnDemandResource(identifier);
     }
 
 }

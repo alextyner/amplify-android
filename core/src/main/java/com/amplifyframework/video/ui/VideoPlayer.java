@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-package com.amplifyframework.video;
+package com.amplifyframework.video.ui;
 
 import android.content.Context;
 import android.os.Build;

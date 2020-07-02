@@ -17,8 +17,8 @@ package com.amplifyframework.video;
 
 import android.net.Uri;
 
-import com.amplifyframework.video.live.LiveBehavior;
-import com.amplifyframework.video.ondemand.OnDemandBehavior;
+import com.amplifyframework.video.resources.live.LiveBehavior;
+import com.amplifyframework.video.resources.ondemand.OnDemandBehavior;
 
 /**
  * Video category behaviors include live and on-demand operations.

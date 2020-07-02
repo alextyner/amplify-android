@@ -13,11 +13,26 @@
  * permissions and limitations under the License.
  */
 
-package com.amplifyframework.video.live;
+package com.amplifyframework.video.resources.live;
+
+import java.util.Collection;
 
 /**
  * Live video behaviors include TODO: what? .
  */
 public interface LiveBehavior {
-    // TODO: live behaviors
+
+    /**
+     * Retrieve all configured live video resources.
+     * @return A Set of live video resources.
+     */
+    Collection<LiveResource> liveResources();
+
+    /**
+     * Get a live resource by its identifier.
+     * @param identifier String resource identifier.
+     * @return A {@link LiveResource} with the given identifier.
+     */
+    LiveResource getLiveResource(String identifier);
+
 }

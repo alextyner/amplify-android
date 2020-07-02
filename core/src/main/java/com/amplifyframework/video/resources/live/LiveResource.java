@@ -13,11 +13,11 @@
  * permissions and limitations under the License.
  */
 
-package com.amplifyframework.video.live;
+package com.amplifyframework.video.resources.live;
 
 import androidx.annotation.NonNull;
 
-import com.amplifyframework.video.VideoResource;
+import com.amplifyframework.video.resources.VideoResource;
 
 import java.util.Map;
 import java.util.Objects;

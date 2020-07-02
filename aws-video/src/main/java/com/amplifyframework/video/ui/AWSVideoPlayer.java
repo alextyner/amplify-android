@@ -21,8 +21,6 @@ import android.util.AttributeSet;
 import android.widget.MediaController;
 import androidx.annotation.RequiresApi;
 
-import com.amplifyframework.video.VideoPlayer;
-
 /**
  * A video player for Amplify Video.
  */

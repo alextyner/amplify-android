@@ -13,11 +13,26 @@
  * permissions and limitations under the License.
  */
 
-package com.amplifyframework.video.ondemand;
+package com.amplifyframework.video.resources.ondemand;
+
+import java.util.Collection;
 
 /**
  * On-demand behaviors include TODO: what? .
  */
 public interface OnDemandBehavior {
-    // TODO: list on demand behavior
+
+    /**
+     * Retrieve all configured on-demand video resources.
+     * @return A Set of on-demand video resources.
+     */
+    Collection<OnDemandResource> onDemandResources();
+
+    /**
+     * Get an on-demand resource by its identifier.
+     * @param identifier String resource identifier.
+     * @return A {@link OnDemandResource} with the given identifier.
+     */
+    OnDemandResource getOnDemandResource(String identifier);
+
 }

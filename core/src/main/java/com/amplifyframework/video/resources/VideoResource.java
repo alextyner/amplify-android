@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-package com.amplifyframework.video;
+package com.amplifyframework.video.resources;
 
 import androidx.annotation.NonNull;
 
@@ -32,6 +32,14 @@ public class VideoResource {
      */
     public VideoResource(@NonNull String identifier) {
         this.identifier = Objects.requireNonNull(identifier);
+    }
+
+    /**
+     * Get the identifier for this video resource.
+     * @return A String identifier.
+     */
+    public String getIdentifier() {
+        return identifier;
     }
 
 }

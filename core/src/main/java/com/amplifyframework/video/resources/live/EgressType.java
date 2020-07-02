@@ -13,28 +13,40 @@
  * permissions and limitations under the License.
  */
 
-package com.amplifyframework.video.live;
+package com.amplifyframework.video.resources.live;
 
 /**
  * Various live streaming protocols.
  */
-public enum IngressType {
+public enum EgressType {
     /**
-     * Primary.
+     * HLS.
      */
-    PRIMARY("primary"),
+    HLS("hls"),
     /**
      * DASH.
      */
-    BACKUP("backup");
+    DASH("dash"),
+    /**
+     * MSS.
+     */
+    MSS("mss"),
+    /**
+     * CMAF.
+     */
+    CMAF("cmaf"),
+    /**
+     * MEDIASTORE.
+     */
+    MEDIASTORE("mediastore");
 
     private String key;
 
     /**
-     * Constructor for the IngressType.
+     * Constructor for the EgressType.
      * @param key JSON field name
      */
-    IngressType(String key) {
+    EgressType(String key) {
         this.key = key;
     }
 
@@ -47,32 +59,32 @@ public enum IngressType {
     }
 
     /**
-     * Look up a IngressType by its key name.
+     * Look up a EgressType by its key name.
      * @param key String representation of a protocol type
-     * @return The corresponding ingress type
+     * @return The corresponding egress type
      */
-    public static IngressType fromKey(String key) {
-        for (final IngressType ingressType : values()) {
-            if (ingressType.key().equals(key)) {
-                return ingressType;
+    public static EgressType fromKey(String key) {
+        for (final EgressType egressType : values()) {
+            if (egressType.key().equals(key)) {
+                return egressType;
             }
         }
 
-        throw new IllegalArgumentException("No such ingress type: " + key);
+        throw new IllegalArgumentException("No such egress type: " + key);
     }
 
     /**
-     * Look up a IngressType by its String name.
+     * Look up a EgressType by its String name.
      * @param name String representation of a protocol type
-     * @return The corresponding ingress type
+     * @return The corresponding egress type
      */
-    public static IngressType from(String name) {
-        for (final IngressType ingressType : values()) {
-            if (ingressType.name().equals(name)) {
-                return ingressType;
+    public static EgressType from(String name) {
+        for (final EgressType egressType : values()) {
+            if (egressType.name().equals(name)) {
+                return egressType;
             }
         }
 
-        throw new IllegalArgumentException("No such ingress type: " + name);
+        throw new IllegalArgumentException("No such egress type: " + name);
     }
 }
