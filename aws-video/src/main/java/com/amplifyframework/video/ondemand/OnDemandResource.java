@@ -19,18 +19,26 @@ import androidx.annotation.NonNull;
 
 import com.amplifyframework.video.VideoResource;
 
+import java.util.Map;
+import java.util.Objects;
+
 /**
  * An on-demand video resource.
  */
 public class OnDemandResource extends VideoResource {
 
+    private Map<InputType, String> input;
+    private Map<OutputType, String> output;
+
     /**
      * Constructor for the VideoResource.
-     *
      * @param identifier A resource identifier.
+     * @param input Video input methods. Typically just an S3 bucket.
+     * @param output Video output methods. Typically an S3 bucket resource name.
      */
-    public OnDemandResource(@NonNull String identifier) {
+    public OnDemandResource(@NonNull String identifier, Map<InputType, String> input, Map<OutputType, String> output) {
         super(identifier);
+        this.input = Objects.requireNonNull(input);
+        this.output = Objects.requireNonNull(output);
     }
-
 }

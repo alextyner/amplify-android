@@ -19,17 +19,45 @@ import androidx.annotation.NonNull;
 
 import com.amplifyframework.video.VideoResource;
 
+import java.util.Map;
+import java.util.Objects;
+
 /**
  * A live video resource.
  */
 public class LiveResource extends VideoResource {
 
+    private Map<IngressType, String> ingress;
+    private Map<EgressType, String> egress;
+
     /**
      * Constructor for the VideoResource.
-     *
      * @param identifier A resource identifier.
+     * @param ingress Primary and backup ingress RTMP URIs.
+     * @param egress One or more egress protocol URIs.
      */
-    public LiveResource(@NonNull String identifier) {
+    public LiveResource(@NonNull String identifier, Map<IngressType, String> ingress, Map<EgressType, String> egress) {
         super(identifier);
+        this.ingress = Objects.requireNonNull(ingress);
+        this.egress = Objects.requireNonNull(egress);
     }
+
+    /**
+     * Get a URI for streaming to this resource.
+     * @param type Type of ingress point.
+     * @return An ingress point as a String (should be a valid URI).
+     */
+    public String getIngressPoint(IngressType type) {
+        return ingress.get(type);
+    }
+
+    /**
+     * Get a URI for streaming from this resource.
+     * @param type Type of egress protocol.
+     * @return An egress point as a String (should be a valid URI).
+     */
+    public String getEgressPoint(EgressType type) {
+        return egress.get(type);
+    }
+
 }
