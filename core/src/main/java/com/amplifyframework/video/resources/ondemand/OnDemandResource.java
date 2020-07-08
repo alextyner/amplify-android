@@ -41,4 +41,22 @@ public class OnDemandResource extends VideoResource {
         this.input = Objects.requireNonNull(input);
         this.output = Objects.requireNonNull(output);
     }
+
+    /**
+     * Get an input point, typically an S3 Bucket URL, for this resource.
+     * @param type Type of input point.
+     * @return An input point as a String.
+     */
+    public String getInputPoint(InputType type) {
+        return input.get(type);
+    }
+
+    /**
+     * Get an output point, typically an S3 Bucket name, for this resource.
+     * @param type Type of output point.
+     * @return An output point as a String.
+     */
+    public String getOutputPoint(OutputType type) {
+        return output.get(type);
+    }
 }

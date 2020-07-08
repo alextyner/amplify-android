@@ -13,11 +13,11 @@
  * permissions and limitations under the License.
  */
 
-package com.amplifyframework.video.ui;
+package com.amplifyframework.video.event;
 
 /**
- * A video player for Amplify Video.
+ * Metadata surrounding a pause event.
  */
-public abstract class VideoPlayer {
-    
+public class PauseEvent {
+
 }

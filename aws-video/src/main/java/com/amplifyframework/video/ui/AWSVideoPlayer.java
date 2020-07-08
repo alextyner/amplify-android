@@ -15,74 +15,90 @@
 
 package com.amplifyframework.video.ui;
 
-import android.content.Context;
-import android.os.Build;
-import android.util.AttributeSet;
+import android.net.Uri;
+import android.view.View;
 import android.widget.MediaController;
-import androidx.annotation.RequiresApi;
+import android.widget.VideoView;
+import androidx.annotation.NonNull;
+
+import com.amplifyframework.video.event.PauseEvent;
+
+import java.util.Objects;
+import java.util.function.BiConsumer;
 
 /**
  * A video player for Amplify Video.
  */
 public class AWSVideoPlayer extends VideoPlayer {
 
-    private boolean showControls;
-    private MediaController controller;
+    private VideoView videoView;
+    private MediaController mediaController;
+
+    // Event callbacks
+    private BiConsumer<View, PauseEvent> onPause;
 
     /**
-     * Constructor.
-     *
-     * @param context App context.
+     * Create a new {@link AWSVideoPlayer} composed of a {@link VideoView}.
+     * @param videoView The primary {@link VideoView} used by the player.
      */
-    public AWSVideoPlayer(Context context) {
-        super(context);
+    public AWSVideoPlayer(@NonNull VideoView videoView) {
+        attach(videoView);
+    }
+
+    private void attach(@NonNull VideoView videoView) {
+        this.videoView = Objects.requireNonNull(videoView);
     }
 
     /**
-     * Constructor.
-     *
-     * @param context App context.
-     * @param attrs   Attributes.
+     * Set a callback for when the player is paused.
+     * @param callback Consumer called on a pause event.
      */
-    public AWSVideoPlayer(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public void onPause(BiConsumer<View, PauseEvent> callback) {
+        onPause = Objects.requireNonNull(callback);
     }
 
     /**
-     * Constructor.
-     *
-     * @param context      App context.
-     * @param attrs        Attributes.
-     * @param defStyleAttr Style attributes.
+     * Set the URI to use as the video source.
+     * @param uri A valid {@link Uri}.
      */
-    public AWSVideoPlayer(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    public void setSourceURI(Uri uri) {
+        videoView.setVideoURI(uri);
     }
 
     /**
-     * Constructor.
-     *
-     * @param context      App context.
-     * @param attrs        Attributes.
-     * @param defStyleAttr Style attributes.
-     * @param defStyleRes  Style resources.
+     * Access the underlying {@link VideoView}.
+     * @return The {@link VideoView} managed by this player.
      */
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public AWSVideoPlayer(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
+    public VideoView getVideoView() {
+        return videoView;
     }
 
     /**
-     * Adds or removes player controls.
-     * @param showControls Whether this player should show controls.
+     * Pause video playback.
      */
-    public void showControls(boolean showControls) {
-        this.showControls = showControls;
-        if (showControls && controller == null) {
-            controller = new MediaController(getContext());
-        } else if (!showControls && controller != null) {
-            controller = null;
-        }
+    public void pause() {
+        videoView.pause();
+        onPause.accept(videoView, new PauseEvent());
+    }
+
+    /**
+     * Add controls to this player.
+     */
+    public void addControls() {
+        MediaController mediaController = new MediaController(videoView.getContext());
+        setMediaController(mediaController);
+    }
+
+    /**
+     * Remove controls from this player.
+     */
+    public void removeControls() {
+        setMediaController(null);
+    }
+
+    private void setMediaController(MediaController mediaController) {
+        this.mediaController = mediaController;
+        videoView.setMediaController(mediaController);
     }
 
 }
