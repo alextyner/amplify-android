@@ -65,18 +65,18 @@ ext {
             ]
         ],
 
-        aws: [
-            s3: "com.amazonaws:aws-android-sdk-s3:$awsSdkVersion",
-            comprehend: "com.amazonaws:aws-android-sdk-comprehend:$awsSdkVersion",
-            authcore: "com.amazonaws:aws-android-sdk-auth-core:$awsSdkVersion",
-            cognitoauth: "com.amazonaws:aws-android-sdk-cognitoauth:$awsSdkVersion",
-            pinpoint: "com.amazonaws:aws-android-sdk-pinpoint:$awsSdkVersion",
-            mobileclient: "com.amazonaws:aws-android-sdk-mobile-client:$awsSdkVersion",
-            polly: "com.amazonaws:aws-android-sdk-polly:$awsSdkVersion",
-            rekognition: "com.amazonaws:aws-android-sdk-rekognition:$awsSdkVersion",
-            textract: "com.amazonaws:aws-android-sdk-textract:$awsSdkVersion",
-            translate: "com.amazonaws:aws-android-sdk-translate:$awsSdkVersion"
-        ],
+//        aws: [
+//                s3: "com.amazonaws:aws-android-sdk-s3:$awsSdkVersion",
+//                comprehend: "com.amazonaws:aws-android-sdk-comprehend:$awsSdkVersion",
+//                authcore: "com.amazonaws:aws-android-sdk-auth-core:$awsSdkVersion",
+//                cognitoauth: "com.amazonaws:aws-android-sdk-cognitoauth:$awsSdkVersion",
+//                pinpoint: "com.amazonaws:aws-android-sdk-pinpoint:$awsSdkVersion",
+//                mobileclient: "com.amazonaws:aws-android-sdk-mobile-client:$awsSdkVersion",
+//                polly: "com.amazonaws:aws-android-sdk-polly:$awsSdkVersion",
+//                rekognition: "com.amazonaws:aws-android-sdk-rekognition:$awsSdkVersion",
+//                textract: "com.amazonaws:aws-android-sdk-textract:$awsSdkVersion",
+//                translate: "com.amazonaws:aws-android-sdk-translate:$awsSdkVersion"
+//        ],
 
         okhttp: 'com.squareup.okhttp3:okhttp:4.7.2',
         gson: 'com.google.code.gson:gson:2.8.6',
@@ -89,7 +89,7 @@ ext {
         mockito: 'org.mockito:mockito-core:3.1.0',
         mockwebserver: 'com.squareup.okhttp3:mockwebserver:4.7.2',
         robolectric: 'org.robolectric:robolectric:4.3.1',
-        jsonassert: 'org.skyscreamer:jsonassert:1.5.0'
+        jsonassert: 'org.skyscreamer:jsonassert:1.5.0',
     ]
 }
 

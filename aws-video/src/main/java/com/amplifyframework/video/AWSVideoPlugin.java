@@ -20,6 +20,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.amplifyframework.core.category.CategoryType;
 import com.amplifyframework.video.config.AWSVideoPluginConfiguration;
 import com.amplifyframework.video.config.AWSVideoPluginConfigurationReader;
 import com.amplifyframework.video.resources.live.LiveResource;
@@ -103,5 +104,15 @@ public class AWSVideoPlugin extends VideoPlugin<Void> {
     @Override
     public OnDemandResource getOnDemandResource(String identifier) {
         return configuration.onDemandResources().get(identifier);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @NonNull
+    @Override
+    public CategoryType getCategoryType() {
+        // TODO: change this arbitrary decision
+        return CategoryType.API;
     }
 }

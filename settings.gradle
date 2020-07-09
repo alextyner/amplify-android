@@ -13,21 +13,11 @@
  * permissions and limitations under the License.
  */
 
-include ':core'
+include ':extended'
 
 // Plugin Modules
-include ':aws-analytics-pinpoint'
-include ':aws-api'
-include ':aws-datastore'
-include ':aws-auth-cognito'
-include ':aws-predictions'
-include ':aws-predictions-tensorflow'
-include ':aws-storage-s3'
 include ':aws-video'
 
 // Test Utilities and assets
-include ':testutils'
-include ':testmodels'
 
 // Bindings and accessory modules
-include ':rxbindings'
